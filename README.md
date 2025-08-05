@@ -1,4 +1,12 @@
-# Python FastAPI Bigger Applications Template
+# To do:
+1 - connect with DB
+2 - extract blob
+3 - read the blob and transform to desired file
+4 - config textract OCR connect and call
+5 - extract text from a example
+
+
+
 
 ![python](https://img.shields.io/badge/python-3.11.6-informational)
 ![fastapi-0.116.0-informational](https://img.shields.io/badge/fastapi-0.116.0-informational)
