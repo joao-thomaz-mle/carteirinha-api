@@ -30,4 +30,5 @@ dependencies = [
     "black>=22.0.0",
     "flake8>=4.0.0",
     "pre-commit>=2.20.0",
+    "tqdm==4.67.1",
 ]
