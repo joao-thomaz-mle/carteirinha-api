@@ -10,7 +10,7 @@ class ColoredJSONFormatter(logging.Formatter):
     # ANSI color codes
     COLORS = {
         "DEBUG": "\033[36m",  # Cyan
-        "INFO": "\033[33m",  # Yellow
+        "INFO": "\033[32m",  # Green
         "WARNING": "\033[31m",  # Red
         "ERROR": "\033[91m",  # Bright Red
         "CRITICAL": "\033[95m",  # Magenta
