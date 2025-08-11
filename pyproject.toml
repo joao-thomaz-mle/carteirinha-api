@@ -37,4 +37,5 @@ dependencies = [
     "seaborn>=0.13.2",
     "matplotlib>=3.10.5",
     "sqlalchemy>=2.0.42",
+    "strands-agents-tools>=0.2.0",
 ]
