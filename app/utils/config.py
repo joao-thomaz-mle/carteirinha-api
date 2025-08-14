@@ -1,4 +1,6 @@
 import os
+from dataclasses import dataclass, field
+from typing import Dict
 
 
 def load_config():
@@ -13,3 +15,24 @@ def load_config():
         "AWS_ACCESS_KEY_ID": os.getenv("AWS_ACCESS_KEY_ID"),
         "AWS_SECRET_ACCESS_KEY": os.getenv("AWS_SECRET_ACCESS_KEY"),
     }
+
+
+@dataclass
+class AppConstants:
+    BEDROCK_DEFAULT_MODEL_ID: str = "us.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    BEDROCK_DEFAULT_MODEL_VERSION: str = "bedrock-2023-05-31"
+    DEFAULT_PROMPTS_DIR: str = "prompts/"
+    S3_BUCKET_NAME: str = "agente-ai-carteirinha"
+    S3_RESULTS_PREFIX: str = "resultados"
+    S3_DEBUG_PREFIX: str = "debug"
+    STREAMING: bool = False
+    CACHE_PROMPT = "default"
+    RETRIES: Dict[str, int] = field(
+        default_factory=lambda: {"max_attempts": 3, "mode": "standard"}
+    )
+    CONNECTION_TIMEOUT: int = 5
+    READ_TIMEOUT: int = 60
+    TEMPERATURE: float = 1
+    TOP_P: float = 0.95
+    MAX_TOKENS: int = 4096
+    BUDGET_TOKENS: int = 2048

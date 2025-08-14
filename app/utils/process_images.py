@@ -12,7 +12,7 @@ from app.utils.logger import get_logger
 logger = get_logger(name=__name__)
 
 
-def converter_blob_para_imagens(
+def convert_blob_to_images(
     blob: bytes, extensao: str, MAX_IMAGES_PER_BLOB: int
 ) -> List[Image.Image]:
     imagens = []
@@ -38,7 +38,7 @@ def converter_blob_para_imagens(
     return imagens
 
 
-def aplicar_clahe(imagem: Image.Image) -> Image.Image:
+def apply_clahe(imagem: Image.Image) -> Image.Image:
     try:
         imagem_cv = cv2.cvtColor(np.array(imagem), cv2.COLOR_RGB2BGR)
         imagem_cinza = cv2.cvtColor(imagem_cv, cv2.COLOR_BGR2GRAY)
@@ -55,25 +55,27 @@ def imagens_para_bytes(images: Image.Image, formato: str = "PNG") -> List[bytes]
 
 
 def process_blobs(
-    blobs_and_id: Dict[str, bytes], img_enhancement: bool = True
+    blobs_and_id: Dict[str, bytes],
+    img_enhancement: bool = True,
+    MAX_IMAGES_PER_BLOB: int = 20,
 ) -> Dict[str, list[bytes]]:
     """get the pdf blob, in bytes, convert to png images, apply enchacement if wanted, and get the png bytes.
     args: blobs_and_id : Dict[str, list[bytes]]: Dictionary mapping IDs to their corresponding byte content.
           img_enhancement (bool): Flag indicating whether to apply image enhancement.
-    output: defaultdict(any, list): A dictionary mapping IDs - str to their corresponding PNG image bytes.
+    output: defaultdict(str, list): A dictionary mapping IDs - str to their corresponding PNG image bytes.
     """
     byte_png_images_and_id = defaultdict(list)
     if blobs_and_id:
         for blob_id, blob in blobs_and_id.items():
             logger.info(f"Converting BLOB {blob_id} to images...")
-            imagens = converter_blob_para_imagens(
-                blob, "pdf"
-            )  # Assuming PDF for this example
+            imagens = convert_blob_to_images(
+                blob=blob, extensao="pdf", MAX_IMAGES_PER_BLOB=MAX_IMAGES_PER_BLOB
+            )
 
             for img in imagens:
                 if img_enhancement:
-                    img = aplicar_clahe(img)
-                img_bytes = imagens_para_bytes(img)
+                    img = apply_clahe(imagem=img)
+                img_bytes = imagens_para_bytes(images=img, formato="PNG")
                 byte_png_images_and_id[blob_id].append(img_bytes[0])
             logger.info(f"✅ Converted image from BLOB {blob_id} to png bytes.")
     return byte_png_images_and_id
