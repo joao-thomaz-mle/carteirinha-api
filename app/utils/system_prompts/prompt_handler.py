@@ -1,6 +1,6 @@
 class Prompts:
 
-    carteirinha_extraction_prompt = rf"""
+    carteirinha_extraction_prompt = r"""
 Você é um especialista em extração estruturada de dados.
 Sua tarefa: analisar o texto e retornar **apenas** as informações de carteirinhas de convênio de saúde em JSON válido.
 ⚠️ Retorne **somente JSON**, sem explicações, comentários ou texto adicional.
@@ -63,11 +63,11 @@ Texto: ""defaultdict(<class 'list'>,
   'Plano': ['ESPECIAL 100'], 'DEMAIS REGIOES:': ['0800 970 0500'],
    'Acomodação': ['APARTAMENTO'], 'CAPITAIS E REG.': [''], 'CNS': ['']})""
 JSON esperado:
-{{
+{
   "convenio": null,
   "plano": "ESPECIAL 100",
   "nome_pessoa": "MARIA DE LOURDES SILVA CAMARA",
   "numero_carteirinha": "88888483739560020"
-}}
+}
 
 """
