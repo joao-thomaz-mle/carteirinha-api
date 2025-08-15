@@ -15,7 +15,7 @@ class MariaDBService:
             "user": settings.get("MARIADB_USER"),
             "password": settings.get("MARIADB_PASSWORD"),
             "host": settings.get("MARIADB_HOST"),
-            "port": settings.get("MARIADB_PORT"),
+            "port": int(settings.get("MARIADB_PORT")),
             "database": settings.get("MARIADB_DATABASE"),
         }
         self.connection = None
