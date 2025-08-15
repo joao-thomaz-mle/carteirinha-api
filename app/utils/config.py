@@ -14,6 +14,15 @@ def load_config():
         "AWS_BEDROCK_REGION": os.getenv("AWS_BEDROCK_REGION", "us-east-1"),
         "AWS_ACCESS_KEY_ID": os.getenv("AWS_ACCESS_KEY_ID"),
         "AWS_SECRET_ACCESS_KEY": os.getenv("AWS_SECRET_ACCESS_KEY"),
+        "ORACLE_USER": os.getenv("ORACLE_USER"),
+        "ORACLE_PASSWORD": os.getenv("ORACLE_PASSWORD"),
+        "ORACLE_DSN": os.getenv("ORACLE_DSN"),
+        "ORACLE_INSTANT_CLIENT_PATH": os.getenv("ORACLE_INSTANT_CLIENT_PATH"),
+        "MARIADB_USER": os.getenv("MARIADB_USER"),
+        "MARIADB_PASSWORD": os.getenv("MARIADB_PASSWORD"),
+        "MARIADB_HOST": os.getenv("MARIADB_HOST"),
+        "MARIADB_PORT": os.getenv("MARIADB_PORT"),
+        "MARIADB_DATABASE": os.getenv("MARIADB_DATABASE"),
     }
 
 
